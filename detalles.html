@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="index.html">regresar</a>
+    <hr>
+    <h1 id="titulo"></h1>
+    <hr>
+    <img  id= "imagen" src="" >
+    <script>
+        const urlLocal = new URL(window.location.href);
+        const search_params = urlLocal.searchParams;
+        const id = search_params.get('id');
+
+
+        const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
+
+        fetch(url)
+            .then(Response => Response.json())
+            .then(Post => {
+                document.getElementById("titulo").innerHTML = Post.title;
+                document.getElementById("imagen").src = Post.thumbnailUrl;
+            })
+    </script>
+</body>
+</html>
